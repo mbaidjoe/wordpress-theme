@@ -30,7 +30,7 @@ const imagemin = require('gulp-imagemin');
 // plugins for fonts
 
 // ---------------------------------------------------------------------------------------------------------------------
-// BROWSER SYNC
+// MAIN TASKS
 
 /**
  * Creates the browser sync.
@@ -53,6 +53,18 @@ gulp.task('default', ['styles', 'scripts', 'images', 'fonts', 'browser-sync'], (
     gulp.watch('resources/assets/**/*.js', ['scripts', browsersync.reload]);
     browsersync.reload();
 });
+
+/**
+ * Build task.
+ */
+gulp.task('build', [
+    'images',
+    'fonts'
+], () => {
+    gulp.start('styles');
+    gulp.start('scripts');
+});
+
 
 // ---------------------------------------------------------------------------------------------------------------------
 // STYLES
