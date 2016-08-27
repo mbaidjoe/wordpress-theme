@@ -1,0 +1,8 @@
+/public/content/plugins
+/public/content/themes/twentysixteen
+/public/content/uploads
+/public/wp
+/vendor
+/wp-config.php
+
+!.gitkeep
