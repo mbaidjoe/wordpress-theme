@@ -50,7 +50,7 @@ define('NONCE_SALT',       'put your unique phrase here');
 define('WP_DEBUG', false);
 ```
 
-### Directory structure:
+### Directory structure
 
 ```
 - public (or public_html, wwwroot, etc.)
@@ -73,6 +73,8 @@ define('WP_DEBUG', false);
 - wp-config.php (contains settings specifically for an environment, like database settings)
 - wp-config-sample.php
 ```
+
+**If you have a different directory name than `public`, you'll only have to change the composer.json file.**
 
 ### Theme directory structure
 
