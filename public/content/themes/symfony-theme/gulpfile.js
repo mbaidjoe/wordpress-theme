@@ -1,6 +1,7 @@
 /**
  * The available tasks are:
  * - gulp (watch task with browser sync, don't forget to change the proxy)
+ * - gulp build (calls the the task below including minifying and optimizing assets)
  * - gulp styles
  * - gulp scripts
  * - gulp images
@@ -48,9 +49,9 @@ gulp.task('browser-sync', () => {
  * Watch task.
  */
 gulp.task('default', ['styles', 'scripts', 'images', 'fonts', 'browser-sync'], () => {
-    gulp.watch('resources/view/**/*.php', ['', browsersync.reload]);
-    gulp.watch('resources/assets/**/*.scss', ['styles', browsersync.reload]);
-    gulp.watch('resources/assets/**/*.js', ['scripts', browsersync.reload]);
+    gulp.watch('resources/views/**/*.php', ['', browsersync.reload]);
+    gulp.watch('resources/assets/**/*.scss', ['styles:compile', browsersync.reload]);
+    gulp.watch('resources/assets/**/*.js', ['scripts:compile', browsersync.reload]);
     browsersync.reload();
 });
 
@@ -65,7 +66,6 @@ gulp.task('build', [
     gulp.start('scripts');
 });
 
-
 // ---------------------------------------------------------------------------------------------------------------------
 // STYLES
 
@@ -73,7 +73,6 @@ gulp.task('build', [
  * Main task.
  */
 gulp.task('styles', [
-    'styles:compile',
     'styles:minify'
 ], () => {
     gulp.start('styles:replace:images');
@@ -191,7 +190,6 @@ gulp.task('styles:delete', () =>
  * Main task.
  */
 gulp.task('scripts', [
-    'scripts:compile',
     'scripts:minify'
 ]);
 
@@ -217,7 +215,7 @@ gulp.task('scripts:compile', ['scripts:delete'], () =>
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('assets/scripts'))
         .pipe(notify({
-            message: 'Base script compiled',
+            message: 'Scripts compiled',
             onLast:  true
         }))
 );
@@ -236,7 +234,7 @@ gulp.task('scripts:minify', ['scripts:compile'], () =>
         }))
         .pipe(gulp.dest('assets/scripts'))
         .pipe(notify({
-            message: 'Base script minified',
+            message: 'Scripts minified',
             onLast:  true
         }))
 );
