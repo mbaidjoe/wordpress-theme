@@ -1,5 +1,6 @@
 {
   "name": "rolfdenhartog/symfony-theme",
+  "type": "project",
   "license": "MIT",
   "autoload": {
     "psr-4": {
