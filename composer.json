@@ -1,59 +1,66 @@
 {
-    "autoload": {
-        "psr-4": {
-            "SymfonyTheme\\": "public/content/themes/symfony-theme/src/"
+  "name": "rolfdenhartog/symfony-theme",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "SymfonyTheme\\": "public/content/themes/symfony-theme/src/"
+    },
+    "files": [
+      "public/content/themes/symfony-theme/helpers.php"
+    ]
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "wordpress",
+        "type": "webroot",
+        "version": "4.6.1",
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/WordPress/WordPress/archive/4.6.1.zip"
         },
-        "files": [
-            "public/content/themes/symfony-theme/helpers.php"
-        ]
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://wpackagist.org"
-        }, {
-            "type": "package",
-            "package": {
-                "name": "wordpress",
-                "type": "webroot",
-                "version": "4.6.1",
-                "dist": {
-                    "type": "zip",
-                    "url": "https://github.com/WordPress/WordPress/archive/4.6.1.zip"
-                },
-                "require": {
-                    "fancyguy/webroot-installer": "1.0.0"
-                }
-            }
+        "require": {
+          "fancyguy/webroot-installer": "1.0.0"
         }
-    ],
-    "require": {
-        "fancyguy/webroot-installer": "1.0.0",
-        "wordpress": "*",
-        "wpackagist-plugin/wordpress-seo": "*",
-        "wpackagist-theme/twentysixteen": "*",
-
-        "illuminate/support": "^5.3",
-        "monolog/monolog": "^1.21",
-        "symfony/http-foundation": "^3.1",
-        "symfony/routing": "^3.1",
-        "symfony/templating": "^3.1",
-        "symfony/var-dumper": "^3.1"
-    },
-    "extra": {
-        "webroot-dir": "public/wp",
-        "webroot-package": "wordpress",
-        "installer-paths": {
-            "public/content/plugins/{$name}/": ["type:wordpress-plugin"],
-            "public/content/themes/{$name}/": ["type:wordpress-theme"]
-        }
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "[ ! -d ./public/wp/wp-content ] || rm -rf ./public/wp/wp-content",
-            "[ ! -f ./public/wp/license.txt ] || rm -f ./public/wp/license.txt",
-            "[ ! -f ./public/wp/readme.html ] || rm -f ./public/wp/readme.html",
-            "[ ! -f ./public/wp/xmlrpc.php ] || rm -f ./public/wp/xmlrpc.php"
-        ]
+      }
     }
+  ],
+  "require": {
+    "fancyguy/webroot-installer": "1.0.0",
+    "wordpress": "*",
+    "wpackagist-plugin/wordpress-seo": "*",
+    "wpackagist-theme/twentysixteen": "*",
+    "illuminate/support": "^5.3",
+    "monolog/monolog": "^1.21",
+    "symfony/http-foundation": "^3.1",
+    "symfony/routing": "^3.1",
+    "symfony/templating": "^3.1",
+    "symfony/var-dumper": "^3.1"
+  },
+  "extra": {
+    "webroot-dir": "public/wp",
+    "webroot-package": "wordpress",
+    "installer-paths": {
+      "public/content/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "public/content/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "[ ! -d ./public/wp/wp-content ] || rm -rf ./public/wp/wp-content",
+      "[ ! -f ./public/wp/license.txt ] || rm -f ./public/wp/license.txt",
+      "[ ! -f ./public/wp/readme.html ] || rm -f ./public/wp/readme.html",
+      "[ ! -f ./public/wp/xmlrpc.php ] || rm -f ./public/wp/xmlrpc.php"
+    ]
+  }
 }
