@@ -2,8 +2,8 @@
 
 ## Installation
 
-Once you downloaded the repo, run the following commands:
-* `composer install`
+Run the following commands:
+* `composer create-project rolfdenhartog/symfony-theme path/of/installation`
 * `cd public/content/themes/symfony-theme`
 * `npm install`
 * `bower install`
