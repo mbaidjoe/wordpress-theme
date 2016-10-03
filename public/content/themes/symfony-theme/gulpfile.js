@@ -100,7 +100,7 @@ gulp.task('styles:compile', ['styles:delete'], () =>
  * Minifies and hashes the stylesheets.
  */
 gulp.task('styles:minify', ['styles:compile'], () =>
-    gulp.src('assets/styles/*.css')
+    gulp.src('assets/styles/**/*.css')
         .pipe(cssnano({
             discardComments: {
                 removeAll: true
@@ -224,7 +224,7 @@ gulp.task('scripts:compile', ['scripts:delete'], () =>
  * Creates the minified and hashed version of the base script.
  */
 gulp.task('scripts:minify', ['scripts:compile'], () =>
-    gulp.src('assets/scripts/base.js')
+    gulp.src('assets/scripts/main.js')
         .pipe(uglify())
         .pipe(rev())
         .pipe(gulp.dest('assets/scripts'))
