@@ -2,7 +2,7 @@
 
 namespace WordpressTheme\Controllers;
 
-use WordpressTheme\Views\HtmlView;
+use WordpressTheme\Views\View;
 
 class PagesController
 {
@@ -14,7 +14,7 @@ class PagesController
      */
     public function render($slug)
     {
-        $view         = new HtmlView();
+        $view         = new View();
         $template     = '/page';
         $pageTemplate = get_post_meta(get_the_ID(), '_wp_page_template', true);
 
@@ -22,6 +22,6 @@ class PagesController
             $template = '/templates/' . $pageTemplate;
         }
 
-        return $view->renderPage($template);
+        return $view->render($template);
     }
 }

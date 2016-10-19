@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var string $content
+ * @var \League\Plates\Template\Template $this
  */
 
 ?>
@@ -31,7 +31,7 @@
         </div>
 
         <main class="container">
-            <?= $content ?>
+            <?= $this->section('content') ?>
         </main>
 
         <script>
