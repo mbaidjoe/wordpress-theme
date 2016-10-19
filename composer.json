@@ -1,13 +1,13 @@
 {
-  "name": "rolfdenhartog/symfony-theme",
+  "name": "rolfdenhartog/wordpress-theme",
   "type": "project",
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "SymfonyTheme\\": "public/content/themes/symfony-theme/src/"
+      "WordpressTheme\\": "public/content/themes/wordpress-theme/src/"
     },
     "files": [
-      "public/content/themes/symfony-theme/helpers.php"
+      "public/content/themes/wordpress-theme/helpers.php"
     ]
   },
   "repositories": [
