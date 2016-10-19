@@ -17,6 +17,9 @@ class PageTemplates implements HookInterface
         $this->filter();
     }
 
+    /**
+     * Searches for the page templates to be selected in the admin.
+     */
     private function filter()
     {
         add_filter('theme_page_templates', function (array $pageTemplates, \WP_Theme $wpTheme, \WP_Post $post = null) {

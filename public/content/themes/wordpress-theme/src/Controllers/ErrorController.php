@@ -2,7 +2,7 @@
 
 namespace WordpressTheme\Controllers;
 
-use WordpressTheme\Views\HtmlView;
+use WordpressTheme\Views\View;
 
 class ErrorController
 {
@@ -31,6 +31,6 @@ class ErrorController
             header('HTTP/1.1 ' . $code . ' ' . $this->httpCodes[$code]);
         }
 
-        return (new HtmlView())->renderPage('/error');
+        return (new View())->render('/error');
     }
 }

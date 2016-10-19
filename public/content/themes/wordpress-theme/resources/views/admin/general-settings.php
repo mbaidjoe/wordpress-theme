@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @var \League\Plates\Template\Template $this
+ */
+
+$this->layout('admin/layout');
+
 ?>
 <table class="form-table">
     <tr>

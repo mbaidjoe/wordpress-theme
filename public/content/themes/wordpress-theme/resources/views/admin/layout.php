@@ -2,7 +2,10 @@
 
 /**
  * The admin page slug.
+ *
+ * @var \League\Plates\Template\Template $this
  */
+
 $page = filter_input(INPUT_GET, 'page');
 
 ?>
@@ -19,7 +22,8 @@ $page = filter_input(INPUT_GET, 'page');
     <!-- form -->
     <form action="?page=<?= $page ?>" method="post">
         <?php wp_nonce_field($page, 'wordpress-theme-nonce') ?>
-        <?= $content ?>
+
+        <?= $this->section('content') ?>
 
         <p class="submit">
             <button class="button button-primary" type="submit"><?= __('Save', 'wordpress-theme') ?></button>

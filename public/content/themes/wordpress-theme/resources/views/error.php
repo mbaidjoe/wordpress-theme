@@ -1,4 +1,10 @@
 <?php
 
+/**
+ * @var \League\Plates\Template\Template $this
+ */
+
+$this->layout('layout');
+
 ?>
-<h1>Oeps! Pagina niet gevonden...</h1>
+<h1>Oops! Page not found...</h1>

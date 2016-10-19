@@ -2,7 +2,7 @@
 
 namespace WordpressTheme\Controllers;
 
-use WordpressTheme\Views\HtmlView;
+use WordpressTheme\Views\View;
 
 class HomepageController
 {
@@ -13,11 +13,6 @@ class HomepageController
      */
     public function render()
     {
-        add_action('wp_enqueue_scripts', function () {
-            wp_enqueue_style('homepage', asset('/assets/styles/homepage.css'));
-            wp_enqueue_script('homepage', asset('/assets/scripts/homepage.js'), [], false, true);
-        });
-
-        return (new HtmlView())->renderPage('/homepage');
+        return (new View())->render('/homepage');
     }
 }
