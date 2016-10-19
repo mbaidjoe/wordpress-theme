@@ -1,10 +1,22 @@
-# WordPress / Symfony theme
+# WordPress base theme
+
+This base theme can be used as a starting point to create your own theme. This theme uses a different structure. It uses
+some Symfony components and packages from other vendors. Thanks to Composer everything is loaded in the most easy way.
+But it is no ony a theme. It also uses Composer to load the WordPress files. See below for more detailed information.
+
+## Requirements
+
+Most servers running PHP should be able serving this 'custom' WordPress installation. At least necessary:
+
+* MySQL
+* Apache / Nginx
+* PHP 7+
 
 ## Installation
 
 Run the following commands:
-* `composer create-project rolfdenhartog/symfony-theme path/of/installation`
-* `cd public/content/themes/symfony-theme`
+* `composer create-project rolfdenhartog/wordpress-theme path/of/installation`
+* `cd public/content/themes/wordpress-theme`
 * `npm install`
 * `bower install`
 * `gulp build`
@@ -57,7 +69,7 @@ define('WP_DEBUG', false);
   - content
     - plugins
     - themes
-      - symfony-theme
+      - wordpress-theme
       - ...
     - uploads
   - wp (WordPress is installed in this directory)
@@ -74,12 +86,15 @@ define('WP_DEBUG', false);
 - wp-config-sample.php
 ```
 
-**If you have a different directory name than `public`, you'll only have to change the composer.json file.**
+**Rename**
+If you have a different directory name than `public`, you'll only have to change the composer.json file. And if you want
+to rename the theme and the namespace, you'll have to search and replace 'wordpress-theme' and 'WordPressTheme'. Don't
+forget to rename the theme directory as well :wink:
 
 ### Theme directory structure
 
 ```
-- symfony-theme
+- wordpress-theme
   - assets (git ignored, all the rendered and optimised files are in this directory)
     - ...
   - resources
