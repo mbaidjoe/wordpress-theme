@@ -87,6 +87,7 @@ define('WP_DEBUG', false);
 ```
 
 **Rename**
+
 If you have a different directory name than `public`, you'll only have to change the composer.json file. And if you want
 to rename the theme and the namespace, you'll have to search and replace 'wordpress-theme' and 'WordPressTheme'. Don't
 forget to rename the theme directory as well :wink:
@@ -103,7 +104,6 @@ forget to rename the theme directory as well :wink:
       - images
       - scripts
       - styles (directory with sass files)
-      - vendor (the 'bower_components' directory)
   - views
      - templates
        - ...
@@ -113,9 +113,7 @@ forget to rename the theme directory as well :wink:
     - Controllers
       - ...
     - ...
-  - .bowerrc
   - .gitignore
-  - bower.json
   - functions.php (contains all the hooks and cron jobs)
   - gulpfile.js
   - helpers.php (contains some small but helpful functions)
