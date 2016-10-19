@@ -11,7 +11,6 @@ Most servers running PHP should be able serving this 'custom' WordPress installa
 * MySQL
 * Apache / Nginx
 * PHP 7+
-* Yarn (the theme uses yarn)
 
 ## Installation
 
