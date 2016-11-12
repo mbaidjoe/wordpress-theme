@@ -2,7 +2,7 @@
 
 namespace WordpressTheme\Controllers;
 
-use WordpressTheme\Views\View;
+use WordpressTheme\View;
 
 class PostsController
 {
@@ -14,6 +14,6 @@ class PostsController
      */
     public function render($slug)
     {
-        return (new View())->render('/posts/single');
+        return view('/posts/single');
     }
 }

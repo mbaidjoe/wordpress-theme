@@ -2,7 +2,7 @@
 
 namespace WordpressTheme\Controllers;
 
-use WordpressTheme\Views\View;
+use WordpressTheme\View;
 
 class HomepageController
 {
@@ -13,6 +13,6 @@ class HomepageController
      */
     public function render()
     {
-        return (new View())->render('/homepage');
+        return view('/homepage');
     }
 }

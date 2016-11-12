@@ -2,7 +2,7 @@
 
 namespace WordpressTheme\Controllers\Admin;
 
-use WordpressTheme\Views\View;
+use WordpressTheme\View;
 
 /**
  * AbstractPage class.
@@ -117,7 +117,7 @@ class AbstractPage
         }
 
         add_action('admin_notices', function () use ($notice) {
-            echo (new View())->render('/admin/notice', [
+            echo view('/admin/notice', [
                 'type'   => array_get($notice, 'type', 'notice'),
                 'notice' => array_get($notice, 'notice'),
             ]);
