@@ -2,7 +2,7 @@
 
 namespace WordpressTheme\Controllers\Admin;
 
-use WordpressTheme\Views\View;
+use WordpressTheme\View;
 
 /**
  * GeneralSettings class.
@@ -47,7 +47,7 @@ class GeneralSettings extends AbstractPage
      */
     public function render()
     {
-        echo (new View())->render('/admin/general-settings');
+        echo view('/admin/general-settings');
     }
 
     /**

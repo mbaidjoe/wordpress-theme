@@ -17,6 +17,19 @@ if (function_exists('path') === false) {
     }
 }
 
+if (function_exists('view') === false) {
+    /**
+     * Returns a rendered template.
+     *
+     * @param  string $template
+     * @param  array  $data
+     * @return string
+     */
+    function view(string $template, array $data = []): string {
+        return (new \WordpressTheme\View())->render($template, $data);
+    }
+}
+
 if (function_exists('asset') === false) {
     /**
      * Loads the unminified url or file if the manifest file does not exist or WP_DEBUG is true. Returns the 'hashed'

@@ -2,7 +2,7 @@
 
 namespace WordpressTheme\Controllers;
 
-use WordpressTheme\Views\View;
+use WordpressTheme\View;
 
 class PagesController
 {

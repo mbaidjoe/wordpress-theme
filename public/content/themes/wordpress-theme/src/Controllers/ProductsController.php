@@ -2,7 +2,7 @@
 
 namespace WordpressTheme\Controllers;
 
-use WordpressTheme\Views\View;
+use WordpressTheme\View;
 
 class ProductsController
 {
@@ -14,7 +14,7 @@ class ProductsController
      */
     public function single($slug)
     {
-        return (new View())->render('/products/single');
+        return view('/products/single');
     }
 
     /**
@@ -24,6 +24,6 @@ class ProductsController
      */
     public function archive()
     {
-        return (new View())->render('/products/archive');
+        return view('/products/archive');
     }
 }
