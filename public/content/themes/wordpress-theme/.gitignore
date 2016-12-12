@@ -1,5 +1,4 @@
 /assets
 /node_modules
-/resources/assets/vendor
 
 !.gitkeep

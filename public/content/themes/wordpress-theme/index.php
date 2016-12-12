@@ -32,7 +32,7 @@ use Symfony\Component\Routing\RequestContext;
 /**
  * Get the routes and create the objects to find the matching url.
  */
-$routes         = require_once __DIR__ . '/routes.php';
+$routes         = require __DIR__ . '/routes.php';
 $requestContext = (new RequestContext())->fromRequest(Request::createFromGlobals());
 $urlMatcher     = new UrlMatcher($routes, $requestContext);
 
