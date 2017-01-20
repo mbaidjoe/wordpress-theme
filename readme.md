@@ -17,14 +17,13 @@ Most servers running PHP should be able serving this 'custom' WordPress installa
 Run the following commands:
 * `composer create-project rolfdenhartog/wordpress-theme path/of/installation`
 * `cd public/content/themes/wordpress-theme`
-* `npm install`
-* `bower install`
-* `gulp build`
+* `yarn install` or `npm install`
+* `gulp build:develop`
 
 ## Configuration
 
 Copy and rename the file `/wp-config-sample.php` to `/wp-config.php`. Change the settings to your needs. Use different
-settings for each environment!
+settings for each environment of you follow Git Flow!
 
 ```php
 <?php
