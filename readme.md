@@ -87,8 +87,9 @@ define('WP_DEBUG', false);
 
 **Rename**
 
-If you have a different directory name than `public`, you'll only have to change the composer.json file. And if you want
-to rename the theme and the namespace, you'll have to search and replace 'wordpress-theme' and 'WordPressTheme'. Don't
+If you have a different directory name than `public`, you'll only have to change the `composer.json` file. And if you
+want to rename the theme and the namespace, you'll have to search and replace 'wordpress-theme' and 'WordPressTheme'.
+There is a line in the `composer.json` file which contains `"type:wordpress-theme"`. This should not be changed! Don't
 forget to rename the theme directory as well :wink:
 
 ### Theme directory structure
