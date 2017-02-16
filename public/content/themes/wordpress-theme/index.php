@@ -14,7 +14,7 @@
  *       - ...
  *     - images
  *       - ...
- *     - vendor (bower, should be git ignored)
+ *     - vendor
  *       - ...
  *   - views
  *     - ...
@@ -28,6 +28,7 @@
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
+use WordpressTheme\Controllers\ErrorController;
 
 /**
  * Get the routes and create the objects to find the matching url.
@@ -39,31 +40,23 @@ $urlMatcher     = new UrlMatcher($routes, $requestContext);
 /**
  * The default controller if anything goes wrong.
  */
-$errorController = \WordpressTheme\Controllers\ErrorController::class;
+$errorController = ErrorController::class;
 
 /**
- * Get requested uri.
+ * Get requested path.
  */
-$requestUri = filter_input(INPUT_SERVER, 'REQUEST_URI');
+$requestPath = parse_url(filter_input(INPUT_SERVER, 'REQUEST_URI'), PHP_URL_PATH);
 
 try {
-    $route         = $urlMatcher->match($requestUri);
+    $route         = $urlMatcher->match($requestPath);
     $controller    = array_get($route, 'controller');
     $method        = array_get($route, 'method', 'render');
     $argument_vars = array_get($route, 'arguments', []);
 
     /**
-     * Check the WordPress function for non existing pages.
-     */
-    if (is_404()) {
-        $controller = $errorController;
-        $method     = 'render404';
-    }
-
-    /**
      * If the class does not exists, we need an error page.
      */
-    elseif (class_exists($controller) === false) {
+    if (class_exists($controller) === false) {
         $controller = $errorController;
         $method     = 'render400';
     }
