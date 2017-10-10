@@ -9,16 +9,8 @@
  * Theme hooks.
  */
 hook(\WordpressTheme\Hooks\Theme\CleanUp::class);
-hook(\WordpressTheme\Hooks\Theme\RegisterPostTypeProduct::class);
 hook(\WordpressTheme\Hooks\Theme\Support::class);
 hook(\WordpressTheme\Hooks\Theme\Navigation::class);
-hook(\WordpressTheme\Hooks\Theme\PageTemplates::class);
-
-/**
- * Admin hooks.
- */
-hook(\WordpressTheme\Controllers\Admin\Settings::class);
-hook(\WordpressTheme\Controllers\Admin\GeneralSettings::class);
 
 /**
  * Plugin hooks.
