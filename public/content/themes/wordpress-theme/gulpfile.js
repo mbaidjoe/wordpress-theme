@@ -1,34 +1,11 @@
-/**
- * Gulpfile. Change the settings according to your wishes.
- *
- * Main tasks:
- * - build:develop (sourcemapped, but no minifying or rev'ing)
- * - build:production (no sourcemapping, but minified and rev'ed)
- * - watch (calls the styles and scripts develop tasks)
- *
- * Todo:
- * - Add base script task (jQuery, Bootstrap)
- * - Add task to replace image paths in stylesheets
- * - Add font optimization function
- */
-
-const cssnano    = require('gulp-cssnano');
-const del        = require('del');
-const imagemin   = require('gulp-imagemin');
-const gulp       = require('gulp');
-const rev        = require('gulp-rev');
-const sass       = require('gulp-sass');
-const sourcemaps = require('gulp-sourcemaps');
-const uglify     = require('gulp-uglify');
-
-// ---------------------------------------------------------------------------------------------------------------------
-// SETTINGS
-
-let pathToResources = 'resources/assets';
-let pathToPublic    = 'assets';
-
-// ---------------------------------------------------------------------------------------------------------------------
-// MAIN TASKS
+const gulp = require('gulp');
+const del = require('del');
+const rev = require('gulp-rev');
+const sass = require('gulp-sass');
+const nano = require('gulp-cssnano');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const minify = require('gulp-imagemin');
 
 gulp.task('build:develop', [
     'styles:develop',
@@ -44,94 +21,83 @@ gulp.task('build:production', [
     'fonts:production',
 ]);
 
-gulp.task('watch', () => {
-    gulp.watch(pathToResources + '/styles/**/*.scss', ['styles:develop']);
-    gulp.watch(pathToResources + '/scripts/**/*.js', ['scripts:develop']);
-});
-
 // ---------------------------------------------------------------------------------------------------------------------
 // STYLES
 
-gulp.task('styles:delete', () => del(pathToPublic + '/styles/*'));
+gulp.task('styles:delete', () => del('assets/styles'));
 
-gulp.task('styles:develop', ['styles:delete'], () => gulp.src(pathToResources + '/styles/**/*.scss')
-    .pipe(sourcemaps.init())
+gulp.task('styles:develop', ['styles:delete'], () => gulp.src('resources/assets/styles/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(pathToPublic + '/styles'))
+    .pipe(gulp.dest('assets/styles'))
 );
 
-gulp.task('styles:production', ['styles:delete'], () => gulp.src(pathToResources + '/styles/**/*.scss')
+gulp.task('styles:production', ['styles:delete'], () => gulp.src('assets/styles/**/*.css')
     .pipe(sass().on('error', sass.logError))
-    .pipe(cssnano({
-        discardComments: {
-            removeAll: true
-        }
-    }))
+    .pipe(nano())
     .pipe(rev())
-    .pipe(gulp.dest(pathToPublic + '/styles'))
-    .pipe(rev.manifest({
-        base: '',
-        merge: true
-    }))
-    .pipe(gulp.dest(pathToPublic + '/styles'))
-);
-
-// ---------------------------------------------------------------------------------------------------------------------
-// SCRIPTS
-
-gulp.task('scripts:delete', () => del(pathToPublic + '/scripts/*'));
-
-gulp.task('scripts:develop', ['scripts:delete'], () => gulp.src(pathToResources + '/scripts/**/*.js')
-    .pipe(gulp.dest(pathToPublic + '/scripts'))
-);
-
-gulp.task('scripts:production', ['scripts:delete'], () => gulp.src(pathToResources + '/scripts/**/*.js')
-    .pipe(uglify())
-    .pipe(rev())
-    .pipe(gulp.dest(pathToPublic + '/scripts'))
-    .pipe(rev.manifest({
-        base: '',
-        merge: true
-    }))
-    .pipe(gulp.dest(pathToPublic + '/scripts'))
+    .pipe(gulp.dest('assets/styles'))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest('assets/styles'))
 );
 
 // ---------------------------------------------------------------------------------------------------------------------
 // IMAGES
 
-gulp.task('images:delete', () => del(pathToPublic + '/images/*'));
+gulp.task('images:delete', () => del('assets/images'));
 
-gulp.task('images:develop', ['images:delete'], () => gulp.src(pathToResources + '/images/**/*.{gif,jpeg,jpg,png}')
-    .pipe(gulp.dest(pathToPublic + '/images'))
+gulp.task('images:develop', ['images:delete'], () => gulp.src('resources/assets/images/*')
+    .pipe(gulp.dest('assets/images'))
 );
 
-gulp.task('images:production', ['images:delete'], () => gulp.src(pathToResources + '/images/**/*.{gif,jpeg,jpg,png}')
-    .pipe(imagemin())
+gulp.task('images:production', ['images:delete'], () => gulp.src('resources/assets/images/*')
     .pipe(rev())
-    .pipe(gulp.dest(pathToPublic + '/images'))
-    .pipe(rev.manifest({
-        base: '',
-        merge: true
-    }))
-    .pipe(gulp.dest(pathToPublic + '/images'))
+    .pipe(minify())
+    .pipe(gulp.dest('assets/images'))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest('assets/images'))
 );
 
 // ---------------------------------------------------------------------------------------------------------------------
 // FONTS
 
-gulp.task('fonts:delete', () => del(pathToPublic + '/fonts/*'));
+gulp.task('fonts:delete', () => del('assets/fonts'));
 
-gulp.task('fonts:develop', ['fonts:delete'], () => gulp.src(pathToResources + '/fonts/**/*.{eot,otf,svg,ttf,woff,woff2}')
-    .pipe(gulp.dest(pathToPublic + '/fonts'))
+gulp.task('fonts:develop', ['fonts:delete'], () => gulp.src('node_modules/font-awesome/fonts/*.{eot,otf,svg,ttf,woff,woff2}')
+    .pipe(gulp.dest('assets/fonts'))
 );
 
-gulp.task('fonts:production', ['fonts:delete'], () => gulp.src(pathToResources + '/fonts/**/*.{eot,otf,svg,ttf,woff,woff2}')
+gulp.task('fonts:production', ['fonts:delete'], () => gulp.src('node_modules/font-awesome/fonts/*.{eot,otf,svg,ttf,woff,woff2}')
     .pipe(rev())
-    .pipe(gulp.dest(pathToPublic + '/fonts'))
-    .pipe(rev.manifest({
-        base: '',
-        merge: true
-    }))
-    .pipe(gulp.dest(pathToPublic + '/fonts'))
+    .pipe(gulp.dest('assets/fonts'))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest('assets/fonts'))
+);
+
+// ---------------------------------------------------------------------------------------------------------------------
+// SCRIPTS
+
+gulp.task('scripts:delete', () => del('assets/scripts'));
+
+gulp.task('scripts:develop', ['scripts:delete'], () => gulp.src([
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/popper.js/dist/umd/popper.min.js',
+    'node_modules/bootstrap/dist/js/bootstrap.min.js',
+    'resources/assets/scripts/main.js',
+])
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest('assets/scripts'))
+);
+
+gulp.task('scripts:production', ['scripts:delete'], () => gulp.src([
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/popper.js/dist/umd/popper.min.js',
+    'node_modules/bootstrap/dist/js/bootstrap.min.js',
+    'resources/assets/scripts/main.js',
+])
+    .pipe(concat('main.js'))
+    .pipe(uglify())
+    .pipe(rev())
+    .pipe(gulp.dest('assets/scripts'))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest('assets/scripts'))
 );

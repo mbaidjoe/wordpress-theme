@@ -1,8 +1,8 @@
 # WordPress base theme
 
-This base theme can be used as a starting point to create your own theme. This theme uses a different structure. It uses
-some Symfony components and packages from other vendors. Thanks to Composer everything is loaded in the most easy way.
-But it is no ony a theme. It also uses Composer to load the WordPress files. See below for more detailed information.
+This base theme can be used as a starting point to create your own theme. Thanks to Composer everything is loaded in the
+most easy way. But it is no ony a theme. It also uses Composer to load the WordPress files. See below for more detailed
+information.
 
 ## Requirements
 
@@ -92,33 +92,3 @@ want to rename the theme and the namespace, you'll have to search and replace 'w
 There is a line in the `composer.json` file which contains `"type:wordpress-theme"`. This should not be changed! Don't
 forget to rename the theme directory as well :wink:
 
-### Theme directory structure
-
-```
-- wordpress-theme
-  - assets (git ignored, all the rendered and optimised files are in this directory)
-    - ...
-  - resources
-    - assets
-      - fonts
-      - images
-      - scripts
-      - styles (directory with sass files)
-  - views
-     - templates
-       - ...
-     - layout.php
-     - ...
-  - src
-    - Controllers
-      - ...
-    - ...
-  - .gitignore
-  - functions.php (contains all the hooks and cron jobs)
-  - gulpfile.js
-  - helpers.php (contains some small but helpful functions)
-  - index.php ('bootstraps' the website)
-  - package.json
-  - routes.php (contains the url's and their controllers)
-  - style.css (simply to register the theme in WordPress)
-```
