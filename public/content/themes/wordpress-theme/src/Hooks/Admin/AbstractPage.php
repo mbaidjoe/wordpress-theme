@@ -116,7 +116,7 @@ abstract class AbstractPage implements HookInterface
      */
     public function view()
     {
-        $class = str_replace('WordpressTheme\\Hooks\\Admin\\Pages\\', '', get_called_class());
+        $class = str_replace(['WordpressTheme\\Hooks\\Admin\\Pages\\', '\\'], '', get_called_class());
 
         $this->view = kebab_case($class) . ($this->tabs->isNotEmpty() ? '-' . $this->getTab()->slug : '') . '.php';
 
