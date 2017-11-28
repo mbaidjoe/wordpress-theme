@@ -18,6 +18,13 @@ hook(\WordpressTheme\Hooks\Theme\Navigation::class);
 hook(\WordpressTheme\Hooks\Plugins\WordPressSeo::class);
 
 /**
+ * Admin hooks.
+ */
+hook(\WordpressTheme\Hooks\Admin\Pages\PageWithoutTabs::class);
+hook(\WordpressTheme\Hooks\Admin\Pages\SubPage::class);
+hook(\WordpressTheme\Hooks\Admin\Pages\PageWithTabs::class);
+
+/**
  * Cron jobs.
  */
 //job(\WordpressTheme\Jobs\YourJob::class);
